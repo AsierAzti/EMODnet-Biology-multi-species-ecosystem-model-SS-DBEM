@@ -13,3 +13,4 @@ SS-DBEM is a multi-species ecosystem model that combines a species-based model (
 
 The output file contains **relative biomass change projections (2030–2100)** for 18 commercially important fish and invertebrate species in the **North Atlantic**, under the **RCP 8.5** climate scenario and a fishing mortality of **F/Fmsy = 1.0**, using the ensemble mean across climate models. Biomass change values are log-transformed and spatially smoothed using a 25-year focal window.
 
+This work is based on the methodology described by Fernández-Bejarano, Salvador (2022), Create an EMODnet-Biology data product as NetCDF, available at https://github.com/EMODnet/EMODnet-Biology-products-erddap-demo.
