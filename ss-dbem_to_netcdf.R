@@ -7,22 +7,22 @@
 #
 #  Description:
 #  This script generates a NetCDF file from SS-DBEM model 
-#  outputs for multiple marine species under climate scenarios.
+#  outputs for multiple marine species.
 #
 #  Workflow:
-#  1. Read species list and retrieve AphiaID (WoRMS).
-#  2. Build mapping table (model code → AphiaID).
-#  3. Define spatial (lon/lat) and temporal (time) dimensions.
-#  4. Create NetCDF structure and metadata.
-#  5. Map CSV data into multidimensional indices.
-#  6. Fill and validate the biomass array.
-#  7. Export data and attributes to NetCDF.
+#  1. Read species list and retrieve AphiaID.
+#  2. Define spatial (lon/lat) dimensions.
+#  3. Create NetCDF structure and metadata.
+#  4. Read data, indexing and array creation
+#  5. Write data to NetCDF.
+#  6. Add global attributes.
+#  7. Finalize file.
 #
 #  Output:
 #  A CF-compliant NetCDF file containing biomass projections.
 ############################################################
 
-#### 1. LIBRARIES ####
+#### 0. LIBRARIES ####
 
 library(RNetCDF)
 library(readr)
@@ -36,7 +36,7 @@ library(worrms)
 library(glue)
 library(readxl)
 
-#### 2. SPECIES AND APHIAID MAPPING ####
+#### 1. SPECIES AND APHIAID MAPPING ####
 
 #Generate the equivalence of the AphiaID codes and the data part
 names <- read.csv("data/species.csv", sep=";")
@@ -88,8 +88,7 @@ species_aphiaid.df <- species_aphiaid.df %>%
   )
 
 
-#### 3. LON-LAT PREPARATION ####
-
+#### 2. LON-LAT PREPARATION ####
 
 ##Read lon-lat
 lonlat<- read.csv("data/Lat_Lon.csv", sep = ",")
@@ -104,12 +103,12 @@ lon<- sort(unique(lonlat$Lon))
 lat<- sort(unique(lonlat$Lat))
 
 
-#### 4. NETCDF CREATION ####
+#### 3. NETCDF CREATION ####
 
 nc <- create.nc("NC_Output/nc_output.nc")
 
 
-# ---- Longitude ----
+# ---- 1. Longitude ----
 
 dim.def.nc(nc, dimname = "lon", dimlength = length(lon)) 
 var.def.nc(nc, varname = "lon", vartype = "NC_DOUBLE", dimensions = "lon")
@@ -193,13 +192,13 @@ att.put.nc(nc, variable = "crs", name = "spatial_ref", type = "NC_CHAR", value =
 att.put.nc(nc, variable = "crs", name = "GeoTransform", type = "NC_CHAR", value = '-180 0.08333333333333333 0 90 0 -0.08333333333333333 ')
 
 
-#### 5. BIOMASS VARIABLE ####
+# ---- 6. Biomass ----
 
 var.def.nc(nc, varname = "Biomass_relative", vartype = "NC_DOUBLE", dimensions = c("time", "aphiaid", "lat", "lon"))
 att.put.nc(nc, variable = "Biomass_relative", name = "_FillValue", type = "NC_DOUBLE", value = -99999)
 att.put.nc(nc, variable = "Biomass_relative", name = "long_name", type = "NC_CHAR", value = "Biomass relative change")
 
-#### 6. DATA MAPPING ####
+#### 4. READ DATA, INDEXING AND ARRAY ####
 
 df<-read.csv("data/ss-dbem_data.csv")
 
@@ -218,8 +217,7 @@ if (n_sin_mapeo > 0) {
   cat("OK: All rows have an assigned aphiaid.\n")
 }
 
-#### 7. INDEXING AND ARRAY CREATION ####
-
+#Indexing
 df <- df %>%
   mutate(
     lon_i = match(Lon,     lon),            
@@ -254,8 +252,7 @@ if (nrow(df) != sum(!is.na(biomass_array))) {
   warning("Warning: number of values does not match. Duplicates may exist.")
 }
 
-
-#### 8. WRITE DATA TO NETCDF
+#### 5. WRITE DATA TO NETCDF
 var.put.nc(
   nc,
   variable = "Biomass_relative",
@@ -265,7 +262,7 @@ var.put.nc(
 )
 
 
-#### 9. GLOBAL ATTRIBUTES ####
+#### 6. ADD GLOBAL ATTRIBUTES ####
 
 attributes <- list(
   title = "SS-DBEM fish projections under climate and fishing scenarios",
@@ -359,7 +356,7 @@ add_global_attributes <- function(nc, attributes){
 add_global_attributes(nc, attributes)
 
 
-#### 10. FINALIZE FILE ####
+#### 7. FINALIZE FILE ####
 sync.nc(nc)
 print.nc(nc)
 
