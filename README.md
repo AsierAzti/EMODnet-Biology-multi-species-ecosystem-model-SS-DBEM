@@ -31,7 +31,7 @@ The output file contains **relative biomass change projections (2030–2100)** f
 
 ## More information:
 ### References
-[Cheung et al. (2013), *Global Change Biology*](https://onlinelibrary.wiley.com/doi/10.1111/gcb.12231)
+[Fernandes et al. (2013), *Global Change Biology*](https://onlinelibrary.wiley.com/doi/10.1111/gcb.12231)
 ### Code and methodology
 
 [SS-DBEM on Zenodo](https://zenodo.org/records/7548113)
