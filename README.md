@@ -1,4 +1,4 @@
-# {{product_name}}
+# SS-DBEM ensemble projections of 18 North Atlantic fish species under IPCC AR6 RCP 8.5 climate and MSY fishing scenario
 ## Introduction
 {{product_introduction}}
 
