@@ -105,7 +105,7 @@ lat<- sort(unique(lonlat$Lat))
 
 #### 3. NETCDF CREATION ####
 
-nc <- create.nc("NC_Output/nc_output.nc")
+nc <- create.nc("product/nc_output.nc")
 
 
 # ---- 1. Longitude ----
@@ -206,7 +206,7 @@ att.put.nc(nc, "Biomass_relative", "long_name",  "NC_CHAR",   "Biomass relative 
 
 #### 4. READ DATA, INDEXING AND ARRAY ####
 
-df <- read.csv("C:/aWork/Asier/SS-DBEM_copia/SS-DBEM_to_Netcdf/Output_prepared_for_nc/18species_rcp8.5_1.0fmsy_model_ensemble_northatlantic_relativechange_2030_2100_log_25focal_onlysea.csv")
+df <- read.csv("data/derived_data/ss-dbem_rcp8.5_modelensemble_fmsy.csv")
 
 df <- df %>%
   left_join(species_aphiaid.df[, c("Codigo", "aphiaid")],
