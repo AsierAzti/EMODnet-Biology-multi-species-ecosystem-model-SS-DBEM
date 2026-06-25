@@ -1,6 +1,12 @@
 # SS-DBEM ensemble projections of 18 North Atlantic fish species under IPCC AR6 RCP 8.5 climate and MSY fishing scenario
 ## Introduction
-{{product_introduction}}
+Climate change is reshaping ocean conditions—altering temperature, oxygen levels, acidity, and primary production—which in turn affects the growth, distribution, and abundance of marine species, including those targeted by fisheries.
+This project combines two complementary modelling approaches:
+
+- Dynamic Bioclimate Envelope Models (DBEM) to represent species-specific responses
+- Size spectrum models to capture trophic interactions across ecosystems
+
+By integrating these strengths, we provide a framework to predict spatial and temporal changes in marine species under future climate scenarios.
 
 ## Directory structure
 
