@@ -1,12 +1,6 @@
 # SS-DBEM ensemble projections of 18 North Atlantic fish species under IPCC AR6 RCP 8.5 climate and MSY fishing scenario
 ## Introduction
-Climate change is reshaping ocean conditions—altering temperature, oxygen levels, acidity, and primary production—which in turn affects the growth, distribution, and abundance of marine species, including those targeted by fisheries.
-This project combines two complementary modelling approaches:
-
-- Dynamic Bioclimate Envelope Models (DBEM) to represent species-specific responses
-- Size spectrum models to capture trophic interactions across ecosystems
-
-By integrating these strengths, we provide a framework to predict spatial and temporal changes in marine species under future climate scenarios.
+Climate change is reshaping ocean environmental conditions—altering temperature, oxygen levels, acidity, and primary production—which in turn affects the growth, distribution, and abundance of marine species, including those targeted by fisheries.  Future predictions of fish distributions and catches models are available, but many do not provide ensembles to account for uncertainty in environmental projections. Furthermore, these environmental projections from biogeochemical models are regularly updated with revision of climate scenarios. SS-DBEM model is a multi-species model that combines a species-based model (DBEM) with a size-spectrum approach (SS) to project spatially (0.5°×0.5°) and temporally (yearly) resolved changes in marine fish species biomass. It incorporates key ecological processes alongside a competition algorithm that allocates energy resources among co-occurring species using ocean environmental conditions from biogeochemical models
 
 ## Directory structure
 
@@ -32,13 +26,11 @@ This data product use the following datasets:
 - Species parameters: [FishBase](https://www.fishbase.se/search.php)
   
 ## Data product
-SS-DBEM is a multi-species ecosystem model that combines a species-based model (DBEM) with a size-spectrum approach (SS) to project spatially (0.5°×0.5°) and temporally (yearly) resolved changes in marine species biomass. It incorporates key ecological processes alongside a competition algorithm that allocates energy resources among co-occurring species. Environmental conditions from biogeochemical models (GFDL, IPSL, MPII) are explicitly considered, allowing spatially explicit species responses to climate change.
-The output file contains **relative biomass change projections (2030–2100)** for 18 commercially important fish and invertebrate species in the **North Atlantic**, under the **RCP 8.5** climate scenario and a fishing mortality of **F/Fmsy = 1.0**, using the ensemble mean across climate models. Biomass change values are log-transformed and spatially smoothed using a 25-year focal window.
+The output file contains **relative biomass change projections (2030–2100)** for 18 commercially important fish and invertebrate species in the **North Atlantic**, under the **RCP 8.5** climate scenario and a fishing mortality of **F/Fmsy = 1.0**, using the ensemble mean across projections using three biogeochemical models (GFDL, IPSL, MPII). Biomass change values are log-transformed and spatially smoothed using a 25-year focal window
 
 ## More information:
-### References
+### Methods References
 [Fernandes et al. (2013), *Global Change Biology*](https://onlinelibrary.wiley.com/doi/10.1111/gcb.12231)
-### Code and methodology
 
 [SS-DBEM on Zenodo](https://zenodo.org/records/7548113)
 
