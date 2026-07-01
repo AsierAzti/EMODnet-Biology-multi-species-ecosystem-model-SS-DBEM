@@ -157,7 +157,7 @@ dim.def.nc(nc, dimname = "aphiaid", dimlength = 18) #number of species
 dim.def.nc(nc, dimname = "string80", dimlength = 80)
 var.def.nc(nc, varname = "aphiaid", vartype = "NC_INT", dimensions = "aphiaid")
 att.put.nc(nc, variable = "aphiaid", name = "long_name", type = "NC_CHAR", value = "Life Science Identifier - World Register of Marine Species")
-att.put.nc(nc, variable = "aphiaid", name = "units", type = "NC_CHAR", value = "1")
+att.put.nc(nc, variable = "aphiaid", name = "units", type = "NC_CHAR", value = "level")
 var.put.nc(nc, variable = "aphiaid", data = aphiaid_sorted)
 var.get.nc(nc, variable = "aphiaid")
 
